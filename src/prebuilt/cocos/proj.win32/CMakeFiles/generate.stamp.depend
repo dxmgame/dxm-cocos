@@ -1,0 +1,94 @@
+# CMake generation dependency list for this directory.
+E:/code/dxmgame/dxm-cmake-github/src/external/cocos/CMakeLists.txt
+E:/code/dxmgame/dxm-cmake-github/src/external/cocos/config.cmake
+E:/code/dxmgame/dxm-cmake-github/src/external/cocos/proj.win32/CMakeFiles/3.2.3/CMakeSystem.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.2/Modules/CMakeSystemSpecificInitialize.cmake
+E:/code/dxmgame/dxm-cmake-github/src/external/cocos/proj.win32/CMakeFiles/3.2.3/CMakeCCompiler.cmake
+E:/code/dxmgame/dxm-cmake-github/src/external/cocos/proj.win32/CMakeFiles/3.2.3/CMakeCXXCompiler.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.2/Modules/CMakeSystemSpecificInformation.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.2/Modules/CMakeGenericSystem.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.2/Modules/Platform/Windows.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.2/Modules/Platform/WindowsPaths.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.2/Modules/CMakeCInformation.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.2/Modules/Platform/Windows-MSVC-C.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.2/Modules/Platform/Windows-MSVC.cmake
+E:/code/dxmgame/dxm-cmake-github/src/external/cocos/proj.win32/CMakeFiles/3.2.3/CMakeRCCompiler.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.2/Modules/CMakeRCInformation.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.2/Modules/CMakeCommonLanguageInclude.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.2/Modules/CMakeCXXInformation.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.2/Modules/Compiler/MSVC-CXX.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.2/Modules/Platform/Windows-MSVC-CXX.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.2/Modules/Platform/Windows-MSVC.cmake
+C:/Program Files (x86)/CMake/share/cmake-3.2/Modules/CMakeCommonLanguageInclude.cmake
+E:/code/dxmgame/dxm-cmake-github/src/external/cocos/dxm.cmake
+E:/code/dxmgame/dxm-cmake-github/src/external/cocos/config.cmake
+E:/code/dxmgame/dxm-cmake-github/dxm_cmake.project.cmake
+E:/code/dxmgame/dxm-cmake-github/dxm_cmake.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_cmake_init.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/init.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_definitions.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_includes.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_libraries.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_link.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_md5.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_setup.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_md5.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_setup.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_register/init.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_register/dxm_register.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_builder/init.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_builder/dxm_builder.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_definitions.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_includes.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_libraries.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_link.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_md5.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_setup.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_md5.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_setup.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_builder/dxm_builder_module.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_definitions.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_includes.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_libraries.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_link.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_md5.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_setup.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_md5.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_module/dxm_module_setup.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_builder/dxm_builder_module_includes.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_builder/dxm_builder_module_definitions.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_builder/dxm_builder_module_libraries.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_builder/dxm_builder_module_sources.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_builder/dxm_builder_module_precompiled.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_builder/dxm_builder_module_install.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_builder/dxm_builder_module_setup.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_builder/dxm_builder_module_link.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_builder/dxm_builder_module_create_compile_succeeded_cmake.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_builder/dxm_builder_module_create_install_succeeded_cmake.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_find/init.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_find/dxm_find_includes.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_find/dxm_find_libraries.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_find/dxm_find_definitions.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_find/dxm_find_module.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_find/dxm_find_package.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_find/dxm_find_boost.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/util/init.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/util/dxm_file.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/launcher/init.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/launcher/CreateLaunchers.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/launcher/CleanDirectoryList.cmake
+E:/code/dxmgame/dxm-cmake-github/build/cmake/dxm_environment.cmake
+E:/code/dxmgame/dxm-cmake-github/dxm_modules.cmake
+E:/code/dxmgame/dxm-cmake-github/templates/lib/config.cmake
+E:/code/dxmgame/dxm-cmake-github/src/libs/dxm_util/config.cmake
+E:/code/dxmgame/dxm-cmake-github/src/libs/dxm_com/config.cmake
+E:/code/dxmgame/dxm-cmake-github/src/oslibs/lua/config.cmake
+E:/code/dxmgame/dxm-cmake-github/src/oslibs/tolua/config.cmake
+E:/code/dxmgame/dxm-cmake-github/src/oslibs/gtest/config.cmake
+E:/code/dxmgame/dxm-cmake-github/src/prebuilt/platform/config.cmake
+E:/code/dxmgame/dxm-cmake-github/src/external/cocos/config.cmake
+E:/code/dxmgame/dxm-cmake-github/src/external/cocos/config.cmake
+E:/code/dxmgame/dxm-cmake-github/src/external/cocos/config.cmake
