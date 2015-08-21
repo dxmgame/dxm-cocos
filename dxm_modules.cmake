@@ -18,8 +18,9 @@
 
 # 第三方预编译;
 # dxm_register_regist_module(platform ${CMAKE_CURRENT_LIST_DIR}/src/prebuilt/platform pthread dl socket xml2 z inet vld)
+dxm_register_regist_module(cocos ${CMAKE_CURRENT_LIST_DIR}/src/prebuilt/cocos)
 
 # 预编译;
 # dxm_register_regist_module(dxm_util ${CMAKE_CURRENT_LIST_DIR}/src/prebuilt/dxm_util)
 
-dxm_register_regist_module_finish()
+# dxm_register_regist_module_finish()

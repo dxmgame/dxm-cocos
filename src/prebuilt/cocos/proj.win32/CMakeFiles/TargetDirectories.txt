@@ -1,2 +1,0 @@
-E:/code/dxmgame/dxm-cmake-github/src/external/cocos/proj.win32/CMakeFiles/ALL_BUILD.dir
-E:/code/dxmgame/dxm-cmake-github/src/external/cocos/proj.win32/CMakeFiles/ZERO_CHECK.dir
