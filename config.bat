@@ -31,15 +31,15 @@ set ANDROID_SDK_TOOLS=%ANDROID_SDK_HOME%\tools
 set MY_ROOT=%~dp0
 set NDK_MODULE_PATH=%~dp0;%ANDROID_NDK_HOME%\sources\
 set NDK_MODULE_PATH=%NDK_MODULE_PATH:\=/%
-set PATH=%PATH%;%JAVA_HOME%\bin;%ANTBIN%;%ANDROID_NDK_HOME%;%ANDROID_SDK_PLATFORM_TOOLS%;%ANDROID_SDK_TOOLS%;%~dp0\build\tools\win
+set PATH=%PATH%;%JAVA_HOME%\bin;%ANTBIN%;%ANDROID_NDK_HOME%;%ANDROID_SDK_PLATFORM_TOOLS%;%ANDROID_SDK_TOOLS%;%~dp0\dxm\build\tools\win
 set CLASSPATH=.;%JAVA_HOME%\lib
 
 rem -------------------------------
 rem -- DxM
 rem -------------------------------
-set DXM_TOOLS=%~dp0\build\tools\win
+set DXM_TOOLS=%~dp0\dxm\build\tools\win
+set DXM_CMAKE=%~dp0\dxm\build\cmake
 set DXM_INSTALL=%~dp0\install
-set DXM_CMAKE=%~dp0\build\cmake
 
 if defined VS140COMNTOOLS (
 	SET DXM_COMPILER_TOOLS=msvc-14.0
