@@ -57,7 +57,7 @@ xcopy /y/s external\curl\include\win32\*.h %DXM_PREBUILT%\inc\curl\
 xcopy /y/s external\websockets\win32\include\*.h %DXM_PREBUILT%\inc\websockets\
 
 xcopy /y/s external\glfw3\include\win32\*.h %DXM_PREBUILT%\inc\glfw3\
-xcopy /y/s external\win32-specific\gles\include\OGLES\*.h %DXM_PREBUILT%\inc\gles\
+xcopy /y/s external\win32-specific\gles\include\OGLES\GL\*.h %DXM_PREBUILT%\inc\GL\
 
 xcopy /y/s external\freetype2\include\win32\freetype2\*.h %DXM_PREBUILT%\inc\freetype2\
 xcopy /y/s external\freetype2\include\win32\*.h %DXM_PREBUILT%\inc\freetype2\
