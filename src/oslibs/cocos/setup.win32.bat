@@ -1,8 +1,7 @@
+REM 注释
 @echo off
 
 set ocd=%cd%
-set COCOS2DX_VERSION_NAME=cocos2d-x
-set COCOS2DX_ZIP_NAME=cocos-src
 cd /d %~dp0
 
 echo ##### 提示：读取配置文件 #####
@@ -11,16 +10,17 @@ if exist ..\..\config.bat call ..\..\config.bat
 if exist ..\..\..\config.bat call ..\..\..\config.bat
 if exist ..\..\..\..\config.bat call ..\..\..\..\config.bat
 if exist ..\..\..\..\..\config.bat call ..\..\..\..\..\config.bat
+if exist ..\..\..\..\..\..\config.bat call ..\..\..\..\..\..\config.bat
+if exist ..\..\..\..\..\..\..\config.bat call ..\..\..\..\..\..\..\config.bat
 
-SET cocos2dx_sln=build/cocos2d-win32.vc2012.sln
-SET DXM_PREBUILT=win_x86
+echo ##### 提示：预编译安装 %COCOS2DX_ZIP_NAME% #####
+set COCOS2DX_VERSION_NAME=cocos2d-x
+set COCOS2DX_ZIP_NAME=cocos-src
+SET cocos2dx_sln=build/cocos2d-win32.sln
+SET DXM_PREBUILT=%cd%\prebuilt
+SET DXM_PLATFORM=win_x86
 
-call %DXM_PREBUILT_TOOLS%vsvars32.bat
-
-echo ##### 提示：解压 %COCOS2DX_VERSION_NAME% #####
-rem if not exist %COCOS2DX_ZIP_NAME% ( %DXM_TOOLS%\win\bsdtar.exe -zxvf %COCOS2DX_VERSION_NAME%.zip
-rem	move %COCOS2DX_VERSION_NAME% %COCOS2DX_ZIP_NAME%
-rem 	)
+call %DXM_COMPILER_TOOLS%vsvars32.bat
 	
 echo ##### 提示：打补丁 #####
 rem rmdir /s/Q %COCOS2DX_ZIP_NAME%\extensions\spine
@@ -29,54 +29,83 @@ rem xcopy /y/s patch\* %COCOS2DX_ZIP_NAME%\
 echo ##### 提示：编译 %COCOS2DX_ZIP_NAME% #####
 
 cd %COCOS2DX_ZIP_NAME%
-
 BuildConsole.exe %cocos2dx_sln% /prj=libcocos2d /Silent /Cfg="Debug|WIN32,Release|WIN32" 
 
 echo ##### 提示：安装 %COCOS2DX_ZIP_NAME% #####
-if not exist %DXM_PREBUILT%\bin\%DXM_PREBUILT%\debug mkdir %DXM_PREBUILT%\bin\%DXM_PREBUILT%\debug
-if not exist %DXM_PREBUILT%\bin\%DXM_PREBUILT%\release mkdir %DXM_PREBUILT%\bin\%DXM_PREBUILT%\release
-if not exist %DXM_PREBUILT%\lib\%DXM_PREBUILT%\libcocos2dx\debug mkdir %DXM_PREBUILT%\lib\%DXM_PREBUILT%\libcocos2dx\debug
-if not exist %DXM_PREBUILT%\lib\%DXM_PREBUILT%\libcocos2dx\release mkdir %DXM_PREBUILT%\lib\%DXM_PREBUILT%\libcocos2dx\release
-if not exist %DXM_PREBUILT%\inc\libcocos2dx mkdir %DXM_PREBUILT%\inc\libcocos2dx
-if not exist %DXM_PREBUILT%\inc\libcocos2dx\external mkdir %DXM_PREBUILT%\inc\libcocos2dx\external
-if not exist %DXM_PREBUILT%\inc\libcocos2dx\extensions mkdir %DXM_PREBUILT%\inc\libcocos2dx\extensions
 
-copy build\Release.win32\*.lib %DXM_PREBUILT%\lib\%DXM_PREBUILT%\libcocos2dx\release\
-copy build\Debug.win32\*.lib %DXM_PREBUILT%\lib\%DXM_PREBUILT%\libcocos2dx\debug\
-copy build\Release.win32\*.dll %DXM_PREBUILT%\bin\%DXM_PREBUILT%\Release\
-copy build\Debug.win32\*.dll %DXM_PREBUILT%\bin\%DXM_PREBUILT%\Debug\
 
-xcopy /y/s cocos\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\*.inl %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\editor-support\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\platform\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\platform\desktop\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\scripting\lua-bindings\auto\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\scripting\lua-bindings\manual\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\audio\include\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\ui\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\2d\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\3d\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\base\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\editor-support\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\editor-support\spine\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\editor-support\cocostudio\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\editor-support\cocostudio\ActionTimeline\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s cocos\editor-support\cocosbuilder\*.h %DXM_PREBUILT%\inc\libcocos2dx\
+xcopy /y/s build\Release.win32\*.lib %DXM_PREBUILT%\lib\%DXM_PLATFORM%\release\
+xcopy /y/s build\Debug.win32\*.lib %DXM_PREBUILT%\lib\%DXM_PLATFORM%\debug\
+xcopy /y/s build\Release.win32\*.dll %DXM_PREBUILT%\bin\%DXM_PLATFORM%\release\
+xcopy /y/s build\Debug.win32\*.dll %DXM_PREBUILT%\bin\%DXM_PLATFORM%\debug\
 
-xcopy /y/s external\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s external\glfw3\include\win32\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s external\win32-specific\gles\include\OGLES\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s external\chipmunk\include\chipmunk\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s external\Box2D\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s external\curl\include\win32\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s external\win32-specific\zlib\include\*.h %DXM_PREBUILT%\inc\libcocos2dx\
-xcopy /y/s external\*.h %DXM_PREBUILT%\inc\libcocos2dx\external\
+xcopy /y/s cocos\*.h %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s cocos\*.inl %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s cocos\audio\include\*.h %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s cocos\network\*.h %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s cocos\editor-support\*.h %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s cocos\platform\*.h %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s cocos\platform\desktop\*.h %DXM_PREBUILT%\inc\cocos\
 
-xcopy /y/s extensions\*.h %DXM_PREBUILT%\inc\libcocos2dx\extensions\
-xcopy /y/s extensions\*.h %DXM_PREBUILT%\inc\libcocos2dx\
+xcopy /y/s extensions\*.h %DXM_PREBUILT%\inc\extensions\
 
-cd %ocd%
-@echo on
+xcopy /y/s external\*.h %DXM_PREBUILT%\inc\external\
 
+xcopy /y/s external\chipmunk\include\chipmunk\*.h %DXM_PREBUILT%\inc\chipmunk\
+xcopy /y/s external\curl\include\win32\*.h %DXM_PREBUILT%\inc\curl\
+xcopy /y/s external\websockets\win32\include\*.h %DXM_PREBUILT%\inc\websockets\
+
+xcopy /y/s external\glfw3\include\win32\*.h %DXM_PREBUILT%\inc\glfw3\
+xcopy /y/s external\win32-specific\gles\include\OGLES\*.h %DXM_PREBUILT%\inc\gles\
+
+xcopy /y/s external\freetype2\include\win32\freetype2\*.h %DXM_PREBUILT%\inc\freetype2\
+xcopy /y/s external\freetype2\include\win32\*.h %DXM_PREBUILT%\inc\freetype2\
+
+cd /d %~dp0
+
+setlocal enabledelayedexpansion
+call :GET_PATH_NAME %cd%
+set project=%PATH_NAME%
+
+if not exist  proj.win32 md proj.win32
+cd proj.win32
+
+echo #####提示：开始构建#####
+cmake -DDXM_CMAKE_PLATFORM=WIN32 ..
+echo %errorlevel%
+if %errorlevel% neq 0 goto :cmEnd
+cmake -DDXM_CMAKE_PLATFORM=WIN32 ..
+echo %errorlevel%
+if %errorlevel% neq 0 goto :cmEnd
+echo #####提示：构建结束#####
+
+echo #####提示：开始编译#####
+rem BuildConsole.exe %project%.sln /prj=ALL_BUILD /Silent /OpenMonitor /Cfg="Debug|WIN32,Release|WIN32" 
+rem BuildConsole.exe %project%.sln /prj=ALL_BUILD /Silent  /Cfg="Debug|WIN32,Release|WIN32" 
+rem if %errorlevel% neq 0 goto :cmEnd
+echo #####提示：编译结束#####
+
+echo #####提示：开始安装#####
+cmake -DBUILD_TYPE="Debug" -P cmake_install.cmake
+if %errorlevel% neq 0 goto :cmEnd
+cmake -DBUILD_TYPE="Release" -P cmake_install.cmake
+if %errorlevel% neq 0 goto :cmEnd
+echo #####提示：安装结束#####
+
+goto cmDone
+:cmEnd
+echo setup failed
+pause
+exit
+
+:cmDone
+cmake -P dxm_cmake_compile_succeeded.cmake
+cmake -P dxm_cmake_install_succeeded.cmake
+cd /d %ocd%
+
+goto :eof
+:GET_PATH_NAME
+set PATH_NAME=%~n1
+
+:eof
 
