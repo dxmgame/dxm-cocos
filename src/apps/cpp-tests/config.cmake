@@ -1,7 +1,7 @@
 
 
 set(DXM_CONFIG_TEMPLATE console)
-SET(DXM_CONFIG_MODULE tu_cocos_test) 
+SET(DXM_CONFIG_MODULE cpp-tests) 
 
 
 # 
