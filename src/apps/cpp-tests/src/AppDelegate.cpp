@@ -54,7 +54,15 @@ static std::string GetCurrentDirectory()
 	::GetCurrentDirectoryA(MAX_PATH, current_directory);
 	return ConvertPathFormatToUnixStyle(std::string(current_directory)+"/");
 }
-#endif // _DEBUG
+static void SetDefaultDirectory(){
+	FileUtils::getInstance()->setDefaultResourceRootPath(GetCurrentDirectory());
+	{
+		std::vector<std::string> searchPaths;
+		searchPaths.push_back(GetCurrentDirectory());
+		FileUtils::getInstance()->setSearchPaths(searchPaths);
+	}
+}
+#endif //  CC_TARGET_PLATFORM==CC_PLATFORM_WIN32
 
 AppDelegate::AppDelegate()
 : _testController(nullptr)
@@ -84,12 +92,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     // FIXME:: This should be loaded before the Director is initialized,
     // FIXME:: but at this point, the director is already initialized
 #if CC_TARGET_PLATFORM==CC_PLATFORM_WIN32
-	FileUtils::getInstance()->setDefaultResourceRootPath(GetCurrentDirectory());
-	{
-		std::vector<std::string> searchPaths;
-		searchPaths.push_back(GetCurrentDirectory());
-		FileUtils::getInstance()->setSearchPaths(searchPaths);
-	}
+	SetDefaultDirectory();
 #endif
 
 
