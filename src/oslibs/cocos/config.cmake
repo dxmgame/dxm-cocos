@@ -85,8 +85,8 @@ MACRO(dxm_config_find_module MODULE)
 	IF(DXM_CMAKE_PLATFORM_WIN32)
 		dxm_find_module(${MODULE} PACKAGE cocos COMPONENTS libluacocos2d libcocos2d HEADERS cocos/cocos2d.h)
 		dxm_find_module(${MODULE} PACKAGE external1 COMPONENTS websockets libzlib libwebp libiconv freetype250)	
-		dxm_find_module(${MODULE} PACKAGE external2 COMPONENTS glew32 glfw3 libchipmunk libcurl_imp)	# libSpine
-		dxm_find_module(${MODULE} PACKAGE external3 COMPONENTS libpng libjpeg libtiff libbox2d)	
+		dxm_find_module(${MODULE} PACKAGE external2 COMPONENTS glew32 glfw3 libchipmunk libcurl_imp libSpine)	# 
+		dxm_find_module(${MODULE} PACKAGE external3 COMPONENTS libpng libjpeg libtiff libbox2d lua51)	
 		dxm_find_add_libraries(${MODULE} ws2_32 wsock32 winmm opengl32)
 		
 		# dxm_find_module(${MODULE} PACKAGE external HEADERS external/json/document.h)	

@@ -50,6 +50,7 @@ xcopy /y/s cocos\platform\desktop\*.h %DXM_PREBUILT%\inc\cocos\
 
 rem extensions
 xcopy /y/s extensions\*.h %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s extensions\*.h %DXM_PREBUILT%\inc\cocos\extensions\
 
 rem external
 xcopy /y/s external\*.h %DXM_PREBUILT%\inc\cocos\
@@ -67,6 +68,8 @@ xcopy /y/s external\freetype2\include\win32\*.h %DXM_PREBUILT%\inc\cocos\
 rem lua
 xcopy /y/s cocos\scripting\lua-bindings\auto\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s cocos\scripting\lua-bindings\manual\*.h %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s cocos\scripting\lua-bindings\auto\*.hpp %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s cocos\scripting\lua-bindings\manual\*.hpp %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s cocos\audio\include\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s external\lua\lua\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s external\lua\tolua\*.h %DXM_PREBUILT%\inc\cocos\

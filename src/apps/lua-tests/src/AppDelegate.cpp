@@ -1,15 +1,14 @@
-#include "precompiled.h"
+#include "cocos2d.h"
 #include "AppDelegate.h"
+#include "CCLuaEngine.h"
+#include "audio/include/SimpleAudioEngine.h"
+#include "lua_assetsmanager_test_sample.h"
+#include "lua_module_register.h"
+#include "lua_test_bindings.h"
 
-#include <vector>
-#include <string>
-
-#include "HelloWorldScene.h"
-#include "AppMacros.h"
+using namespace CocosDenshion;
 
 USING_NS_CC;
-using namespace std;
-
 #if CC_TARGET_PLATFORM==CC_PLATFORM_WIN32
 static inline std::string ConvertPathFormatToUnixStyle(const std::string& path)
 {
@@ -29,103 +28,80 @@ static std::string GetCurrentDirectory()
 {
 	char current_directory[MAX_PATH];
 	::GetCurrentDirectoryA(MAX_PATH, current_directory);
-	return ConvertPathFormatToUnixStyle(std::string(current_directory)+"/");
+	return ConvertPathFormatToUnixStyle(std::string(current_directory) + "/");
 }
-#endif // _DEBUG
-
-AppDelegate::AppDelegate() {
-
+static void SetDefaultDirectory(){
+	FileUtils::getInstance()->setDefaultResourceRootPath(GetCurrentDirectory());
+	{
+		std::vector<std::string> searchPaths;
+		searchPaths.push_back(GetCurrentDirectory());
+		FileUtils::getInstance()->setSearchPaths(searchPaths);
+	}
 }
-
-AppDelegate::~AppDelegate() 
+#endif //  CC_TARGET_PLATFORM==CC_PLATFORM_WIN32
+AppDelegate::AppDelegate()
 {
+}
+
+AppDelegate::~AppDelegate()
+{
+    SimpleAudioEngine::end();
 }
 
 void AppDelegate::initGLContextAttrs()
 {
     GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
-
+    
     GLView::setGLContextAttrs(glContextAttrs);
 }
 
-bool AppDelegate::applicationDidFinishLaunching() {
-    // initialize director
-    auto director = Director::getInstance();
-    auto glview = director->getOpenGLView();
-    if(!glview) {
-        glview = GLViewImpl::create("Cpp Empty Test");
-        director->setOpenGLView(glview);
-    }
-
-    director->setOpenGLView(glview);
-
-    // Set the design resolution
-    glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
-
-	Size frameSize = glview->getFrameSize();
-    
-    vector<string> searchPath;
-
-    // In this demo, we select resource according to the frame's height.
-    // If the resource size is different from design resolution size, you need to set contentScaleFactor.
-    // We use the ratio of resource's height to the height of design resolution,
-    // this can make sure that the resource's height could fit for the height of design resolution.
-
-    // if the frame's height is larger than the height of medium resource size, select large resource.
-	if (frameSize.height > mediumResource.size.height)
-	{
-        searchPath.push_back(largeResource.directory);
-
-        director->setContentScaleFactor(MIN(largeResource.size.height/designResolutionSize.height, largeResource.size.width/designResolutionSize.width));
-	}
-    // if the frame's height is larger than the height of small resource size, select medium resource.
-    else if (frameSize.height > smallResource.size.height)
-    {
-        searchPath.push_back(mediumResource.directory);
-        
-        director->setContentScaleFactor(MIN(mediumResource.size.height/designResolutionSize.height, mediumResource.size.width/designResolutionSize.width));
-    }
-    // if the frame's height is smaller than the height of medium resource size, select small resource.
-	else
-    {
-        searchPath.push_back(smallResource.directory);
-
-        director->setContentScaleFactor(MIN(smallResource.size.height/designResolutionSize.height, smallResource.size.width/designResolutionSize.width));
-    }
-    
+bool AppDelegate::applicationDidFinishLaunching()
+{
 #if CC_TARGET_PLATFORM==CC_PLATFORM_WIN32
-	FileUtils::getInstance()->setDefaultResourceRootPath(GetCurrentDirectory());
+	SetDefaultDirectory();
 #endif
-    // set searching path
-    FileUtils::getInstance()->setSearchPaths(searchPath);
-	
-    // turn on display FPS
-    director->setDisplayStats(true);
+    // register lua engine
+    LuaEngine* pEngine = LuaEngine::getInstance();
+    ScriptEngineManager::getInstance()->setScriptEngine(pEngine);
+#if CC_TARGET_PLATFORM==CC_PLATFORM_WIN32
+	pEngine->addSearchPath(GetCurrentDirectory().c_str());
+#endif
+    
+    LuaStack* stack = pEngine->getLuaStack();
+    stack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
+    
+    lua_State* L = stack->getLuaState();
+    
+    lua_module_register(L);
 
-    // set FPS. the default value is 1.0/60 if you don't call this
-    director->setAnimationInterval(1.0 / 60);
+    lua_getglobal(L, "_G");
+    if (lua_istable(L,-1))//stack:...,_G,
+    {
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID ||CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
+        register_assetsmanager_test_sample(L);
+#endif
+        register_test_binding(L);
+    }
+    lua_pop(L, 1);
 
-    // create a scene. it's an autorelease object
-    auto scene = HelloWorld::scene();
 
-    // run
-    director->runWithScene(scene);
+    pEngine->executeScriptFile("src/controller.lua");
 
     return true;
 }
 
 // This function will be called when the app is inactive. When comes a phone call,it's be invoked too
-void AppDelegate::applicationDidEnterBackground() {
+void AppDelegate::applicationDidEnterBackground()
+{
     Director::getInstance()->stopAnimation();
 
-    // if you use SimpleAudioEngine, it must be pause
-    // SimpleAudioEngine::sharedEngine()->pauseBackgroundMusic();
+    SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 }
 
 // this function will be called when the app is active again
-void AppDelegate::applicationWillEnterForeground() {
+void AppDelegate::applicationWillEnterForeground()
+{
     Director::getInstance()->startAnimation();
 
-    // if you use SimpleAudioEngine, it must resume here
-    // SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
+    SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }

@@ -1,5 +1,5 @@
-#ifndef  _APP_DELEGATE_H_
-#define  _APP_DELEGATE_H_
+#ifndef __APP_DELEGATE_H__
+#define __APP_DELEGATE_H__
 
 #include "cocos2d.h"
 
@@ -14,8 +14,7 @@ public:
     AppDelegate();
     virtual ~AppDelegate();
 
-    virtual void initGLContextAttrs();
-    
+    void initGLContextAttrs();
     /**
     @brief    Implement Director and Scene init code here.
     @return true    Initialize success, app continue.
@@ -36,5 +35,5 @@ public:
     virtual void applicationWillEnterForeground();
 };
 
-#endif // _APP_DELEGATE_H_
+#endif  // __APP_DELEGATE_H__
 
