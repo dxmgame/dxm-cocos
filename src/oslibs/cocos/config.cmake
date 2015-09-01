@@ -11,7 +11,7 @@ MACRO(dxm_config_module_init MODULE)
 	#
 	# 1. 基本属性配置;
 	#
-	SET(DXM_MODULE_${MODULE}_ANDROID_NAME ${MODULE})
+	SET(DXM_MODULE_${MODULE}_ANDROID_NAME cocos2dx_static)
 	SET(DXM_MODULE_${MODULE}_APP_NAME ${MODULE}) 
 	
 	

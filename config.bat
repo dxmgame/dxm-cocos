@@ -30,6 +30,7 @@ set ANDROID_SDK_PLATFORM_TOOLS=%ANDROID_SDK_HOME%;%ANDROID_SDK_HOME%\platform-to
 set ANDROID_SDK_TOOLS=%ANDROID_SDK_HOME%\tools
 set MY_ROOT=%~dp0
 set NDK_MODULE_PATH=%~dp0;%ANDROID_NDK_HOME%\sources\;
+set NDK_MODULE_PATH=%MY_ROOT%src/oslibs/cocos/cocos-src;%MY_ROOT%src/oslibs/cocos/cocos-src/external;%MY_ROOT%src/oslibs/cocos/cocos-src/cocos;%NDK_MODULE_PATH%;
 set NDK_MODULE_PATH=%NDK_MODULE_PATH:\=/%
 set PATH=%PATH%;%JAVA_HOME%\bin;%ANTBIN%;%ANDROID_NDK_HOME%;%ANDROID_SDK_PLATFORM_TOOLS%;%ANDROID_SDK_TOOLS%;%~dp0\dxm\build\tools\win
 set CLASSPATH=.;%JAVA_HOME%\lib
