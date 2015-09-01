@@ -1,7 +1,7 @@
 
 
 set(DXM_CONFIG_TEMPLATE console)
-SET(DXM_CONFIG_MODULE cpp-empty-test) 
+SET(DXM_CONFIG_MODULE lua-empty-test) 
 
 
 # 
