@@ -14,3 +14,4 @@ LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/../../cocos-src/cocos/2d \
                     $(LOCAL_PATH)/../../cocos-src/cocos \
 
 $(call import-module,scripting/lua-bindings/proj.android)
+$(call import-module,tools/simulator/libsimulator/proj.android)

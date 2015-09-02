@@ -1,13 +1,22 @@
-#include "cocos2d.h"
 #include "AppDelegate.h"
-#include "audio/include/SimpleAudioEngine.h"
-#include "base/CCScriptSupport.h"
 #include "CCLuaEngine.h"
+#include "SimpleAudioEngine.h"
+#include "cocos2d.h"
 #include "lua_module_register.h"
 
-USING_NS_CC;
+#if (CC_TARGET_PLATFORM != CC_PLATFORM_LINUX)
+#include "ide-support/CodeIDESupport.h"
+#endif
+
+#if (COCOS2D_DEBUG > 0) && (CC_CODE_IDE_DEBUG_SUPPORT > 0)
+#include "runtime/Runtime.h"
+#include "ide-support/RuntimeLuaImpl.h"
+#endif
+
 using namespace CocosDenshion;
 
+USING_NS_CC;
+using namespace std;
 
 #if CC_TARGET_PLATFORM==CC_PLATFORM_WIN32
 static inline std::string ConvertPathFormatToUnixStyle(const std::string& path)
@@ -39,46 +48,79 @@ static void SetDefaultDirectory(){
 	}
 }
 #endif //  CC_TARGET_PLATFORM==CC_PLATFORM_WIN32
-
 AppDelegate::AppDelegate()
 {
-    // fixed me
-    //_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF|_CRTDBG_LEAK_CHECK_DF);
 }
 
 AppDelegate::~AppDelegate()
 {
-    // end simple audio engine here, or it may crashed on win32
-    SimpleAudioEngine::getInstance()->end();
-    //CCScriptEngineManager::destroyInstance();
+    SimpleAudioEngine::end();
+
+#if (COCOS2D_DEBUG > 0) && (CC_CODE_IDE_DEBUG_SUPPORT > 0)
+    // NOTE:Please don't remove this call if you want to debug with Cocos Code IDE
+    RuntimeEngine::getInstance()->end();
+#endif
+
 }
 
+//if you want a different context,just modify the value of glContextAttrs
+//it will takes effect on all platforms
 void AppDelegate::initGLContextAttrs()
 {
+    //set OpenGL context attributions,now can only set six attributions:
+    //red,green,blue,alpha,depth,stencil
     GLContextAttrs glContextAttrs = {8, 8, 8, 8, 24, 8};
-    
+
     GLView::setGLContextAttrs(glContextAttrs);
+}
+
+// If you want to use packages manager to install more packages,
+// don't modify or remove this function
+static int register_all_packages()
+{
+    return 0; //flag for packages manager
 }
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
+
 #if CC_TARGET_PLATFORM==CC_PLATFORM_WIN32
 	SetDefaultDirectory();
 #endif
+    // set default FPS
+    Director::getInstance()->setAnimationInterval(1.0 / 60.0f);
 
-    // register lua engine
-    LuaEngine* engine = LuaEngine::getInstance();
+    // register lua module
+    auto engine = LuaEngine::getInstance();
     ScriptEngineManager::getInstance()->setScriptEngine(engine);
+    lua_State* L = engine->getLuaStack()->getLuaState();
 
 #if CC_TARGET_PLATFORM==CC_PLATFORM_WIN32
 	engine->addSearchPath(GetCurrentDirectory().c_str());
 #endif
 
-    lua_State* L = engine->getLuaStack()->getLuaState();
     lua_module_register(L);
-    //The call was commented because it will lead to ZeroBrane Studio can't find correct context when debugging
-    //engine->executeScriptFile("src/hello.lua");
-    engine->executeString("require 'src/hello.lua'");
+
+    register_all_packages();
+
+    LuaStack* stack = engine->getLuaStack();
+    stack->setXXTEAKeyAndSign("2dxLua", strlen("2dxLua"), "XXTEA", strlen("XXTEA"));
+
+    //register custom function
+    //LuaStack* stack = engine->getLuaStack();
+    //register_custom_function(stack->getLuaState());
+
+#if (COCOS2D_DEBUG > 0) && (CC_CODE_IDE_DEBUG_SUPPORT > 0)
+    // NOTE:Please don't remove this call if you want to debug with Cocos Code IDE
+    auto runtimeEngine = RuntimeEngine::getInstance();
+    runtimeEngine->addRuntime(RuntimeLuaImpl::create(), kRuntimeEngineLua);
+    runtimeEngine->start();
+#else
+    if (engine->executeScriptFile("src/main.lua"))
+    {
+        return false;
+    }
+#endif
 
     return true;
 }
@@ -87,6 +129,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 void AppDelegate::applicationDidEnterBackground()
 {
     Director::getInstance()->stopAnimation();
+
     SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
 }
 
@@ -94,5 +137,6 @@ void AppDelegate::applicationDidEnterBackground()
 void AppDelegate::applicationWillEnterForeground()
 {
     Director::getInstance()->startAnimation();
+
     SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
 }

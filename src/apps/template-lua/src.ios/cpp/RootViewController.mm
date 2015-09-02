@@ -24,7 +24,9 @@
  ****************************************************************************/
 
 #import "RootViewController.h"
-
+#import "cocos2d.h"
+#import "platform/ios/CCEAGLView-ios.h"
+#include "ide-support/SimpleConfigParser.h"
 
 @implementation RootViewController
 
@@ -54,18 +56,47 @@
 // Override to allow orientations other than the default portrait orientation.
 // This method is deprecated on ios6
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return UIInterfaceOrientationIsLandscape( interfaceOrientation );
+    if (SimpleConfigParser::getInstance()->isLanscape()) {
+        return UIInterfaceOrientationIsLandscape( interfaceOrientation );
+    }else{
+        return UIInterfaceOrientationIsPortrait( interfaceOrientation );
+    }
 }
 
 // For ios6, use supportedInterfaceOrientations & shouldAutorotate instead
 - (NSUInteger) supportedInterfaceOrientations{
 #ifdef __IPHONE_6_0
-    return UIInterfaceOrientationMaskAllButUpsideDown;
+    if (SimpleConfigParser::getInstance()->isLanscape()) {
+        return UIInterfaceOrientationMaskLandscape;
+    }else{
+        return UIInterfaceOrientationMaskPortraitUpsideDown;
+    }
 #endif
 }
 
 - (BOOL) shouldAutorotate {
-    return YES;
+    if (SimpleConfigParser::getInstance()->isLanscape()) {
+        return YES;
+    }else{
+        return NO;
+    }
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+
+    cocos2d::GLView *glview = cocos2d::Director::getInstance()->getOpenGLView();
+
+    if (glview)
+    {
+        CCEAGLView *eaglview = (CCEAGLView*) glview->getEAGLView();
+
+        if (eaglview)
+        {
+            CGSize s = CGSizeMake([eaglview getWidth], [eaglview getHeight]);
+            cocos2d::Application::getInstance()->applicationScreenSizeChanged((int) s.width, (int) s.height);
+        }
+    }
 }
 
 //fix not hide status on ios7

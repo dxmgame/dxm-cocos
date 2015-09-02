@@ -30,6 +30,7 @@ echo ##### 提示：编译 %COCOS2DX_ZIP_NAME% #####
 
 cd %COCOS2DX_ZIP_NAME%
 BuildConsole.exe %cocos2dx_sln% /prj=libluacocos2d /Silent /Cfg="Debug|WIN32,Release|WIN32" 
+BuildConsole.exe %cocos2dx_sln% /prj=libsimulator /Silent /Cfg="Debug|WIN32,Release|WIN32" 
 
 echo ##### 提示：安装 %COCOS2DX_ZIP_NAME% #####
 
@@ -74,6 +75,11 @@ xcopy /y/s cocos\audio\include\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s external\lua\lua\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s external\lua\tolua\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s external\lua\luajit\include\*.h %DXM_PREBUILT%\inc\cocos\
+
+rem simulator
+xcopy /y/s tools\simulator\libsimulator\lib\*.h %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s tools\simulator\libsimulator\lib\protobuf-lite\*.h %DXM_PREBUILT%\inc\cocos\
+
 
 cd /d %~dp0
 

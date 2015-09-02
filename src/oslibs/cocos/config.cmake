@@ -11,10 +11,8 @@ MACRO(dxm_config_module_init MODULE)
 	#
 	# 1. 基本属性配置;
 	#
-	SET(DXM_MODULE_${MODULE}_ANDROID_NAME cocos2d_lua_static)
+	SET(DXM_MODULE_${MODULE}_ANDROID_NAME "cocos2d_lua_static cocos2d_simulator_static")
 	SET(DXM_MODULE_${MODULE}_APP_NAME ${MODULE}) 
-	
-	
 
 	# 模块类型变量; app(APPLICATION); lib(STATIC, SHARED);
 	SET(DXM_MODULE_${MODULE}_TYPE PREBUILT) # default  pc mac
@@ -83,7 +81,7 @@ MACRO(dxm_config_find_module MODULE)
 #	ENDFOREACH()
 
 	IF(DXM_CMAKE_PLATFORM_WIN32)
-		dxm_find_module(${MODULE} PACKAGE cocos COMPONENTS libluacocos2d libcocos2d HEADERS cocos/cocos2d.h)
+		dxm_find_module(${MODULE} PACKAGE cocos COMPONENTS libluacocos2d libcocos2d libsimulator HEADERS cocos/cocos2d.h)
 		dxm_find_module(${MODULE} PACKAGE external1 COMPONENTS websockets libzlib libwebp libiconv freetype250)	
 		dxm_find_module(${MODULE} PACKAGE external2 COMPONENTS glew32 glfw3 libchipmunk libcurl_imp libSpine)	# 
 		dxm_find_module(${MODULE} PACKAGE external3 COMPONENTS libpng libjpeg libtiff libbox2d lua51)	
