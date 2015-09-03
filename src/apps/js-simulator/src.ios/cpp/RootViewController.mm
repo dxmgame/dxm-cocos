@@ -24,7 +24,8 @@
  ****************************************************************************/
 
 #import "RootViewController.h"
-
+#import "cocos2d.h"
+#import "platform/ios/CCEAGLView-ios.h"
 
 @implementation RootViewController
 
@@ -57,9 +58,8 @@
     return UIInterfaceOrientationIsLandscape( interfaceOrientation );
 }
 
-// For ios6.0 and higher, use supportedInterfaceOrientations & shouldAutorotate instead
-- (NSUInteger) supportedInterfaceOrientations
-{
+// For ios6, use supportedInterfaceOrientations & shouldAutorotate instead
+- (NSUInteger) supportedInterfaceOrientations{
 #ifdef __IPHONE_6_0
     return UIInterfaceOrientationMaskAllButUpsideDown;
 #endif
@@ -67,6 +67,22 @@
 
 - (BOOL) shouldAutorotate {
     return YES;
+}
+
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation {
+    [super didRotateFromInterfaceOrientation:fromInterfaceOrientation];
+
+    cocos2d::GLView *glview = cocos2d::Director::getInstance()->getOpenGLView();
+    if (glview)
+    {
+        cocos2d::CCEGLView *eaglview = (cocos2d::CCEGLView*) glview->getEAGLView();
+        
+        if (eaglview)
+        {
+            CGSize s = CGSizeMake([eaglview getWidth], [eaglview getHeight]);
+            cocos2d::Application::getInstance()->applicationScreenSizeChanged((int) s.width, (int) s.height);
+        }
+    }
 }
 
 //fix not hide status on ios7
