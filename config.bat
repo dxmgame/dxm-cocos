@@ -90,3 +90,4 @@ if defined VS140COMNTOOLS (
 		SET DXM_GENERATOR_X64="Visual Studio 10 Win64"		
 	)
 )
+call %DXM_COMPILER_TOOLS%vsvars32.bat

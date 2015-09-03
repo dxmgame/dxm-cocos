@@ -13,26 +13,21 @@ if exist ..\..\..\..\..\config.bat call ..\..\..\..\..\config.bat
 if exist ..\..\..\..\..\..\config.bat call ..\..\..\..\..\..\config.bat
 if exist ..\..\..\..\..\..\..\config.bat call ..\..\..\..\..\..\..\config.bat
 
-echo ##### 提示：预编译安装 %COCOS2DX_ZIP_NAME% #####
-set COCOS2DX_VERSION_NAME=cocos2d-x
-set COCOS2DX_ZIP_NAME=cocos-src
+echo ##### 提示：变量配置 #####
 SET cocos2dx_sln=build/cocos2d-win32.sln
 SET DXM_PREBUILT=%cd%\prebuilt
 SET DXM_PLATFORM=win_x86
-
-call %DXM_COMPILER_TOOLS%vsvars32.bat
 	
 echo ##### 提示：打补丁 #####
-rem rmdir /s/Q %COCOS2DX_ZIP_NAME%\extensions\spine
-rem xcopy /y/s patch\* %COCOS2DX_ZIP_NAME%\
+rem rmdir /s/Q %DXM_COCOS_PATH%\extensions\spine
+rem xcopy /y/s patch\* %DXM_COCOS_PATH%\
 
-echo ##### 提示：编译 %COCOS2DX_ZIP_NAME% #####
-
-cd %COCOS2DX_ZIP_NAME%
+echo ##### 提示：编译 Cocos #####
+cd %DXM_COCOS_PATH%
 BuildConsole.exe %cocos2dx_sln% /prj=libluacocos2d /Silent /Cfg="Debug|WIN32,Release|WIN32" 
 BuildConsole.exe %cocos2dx_sln% /prj=libsimulator /Silent /Cfg="Debug|WIN32,Release|WIN32" 
 
-echo ##### 提示：安装 %COCOS2DX_ZIP_NAME% #####
+echo ##### 提示：安装 Cocos #####
 
 rem lib&dll
 xcopy /y/s build\Release.win32\*.lib %DXM_PREBUILT%\lib\%DXM_PLATFORM%\release\
