@@ -14,7 +14,7 @@ echo #####提示：构建结束#####
 
 echo #####提示：开始编译#####
 rem BuildConsole.exe %project%.sln /prj=ALL_BUILD  /Cfg="Debug|WIN32,Release|WIN32" 
-xcopy /s /y ..\Application.mk jni\
+xcopy /y ..\Application.mk jni\
 call build.bat
 echo #####提示：编译结束#####
 
