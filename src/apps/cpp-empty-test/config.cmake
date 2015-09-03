@@ -62,7 +62,7 @@ MACRO(dxm_config_module_init MODULE)
 	# dxm_module_link_library(${MODULE} z false)
 	# dxm_module_link_library(${MODULE} inet false)
 	# dxm_module_link_library(${MODULE} vld false)
-	dxm_module_link_library(${MODULE} cocos false)
+	dxm_module_link_library(${MODULE} cocos-cpp false)
 
 ENDMACRO()
 
