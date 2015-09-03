@@ -1,6 +1,6 @@
 
 SET(DXM_CONFIG_TEMPLATE prebuit)
-SET(DXM_CONFIG_MODULE cocos) 
+SET(DXM_CONFIG_MODULE cocos-js) 
 
 
 # 
@@ -38,7 +38,7 @@ MACRO(dxm_config_module_init MODULE)
 	# 	额外计算默认目录的md5，其中包括src,inc,proto,src.android/cpp,src.ios/cpp,src.win/cpp，src.unix/cpp
 	# dxm_module_add_directory_md5(${MODULE} patch)
 	# 	额外计算工程当前某目录下的MD5为模块MD5
-	dxm_module_add_file_md5(${MODULE} ${DXM_CMAKE_COCOS_DIRECTORY}/cocos-src/cocos/cocos2d.cpp)
+	dxm_module_add_file_md5(${MODULE} ${DXM_CMAKE_COCOS_DIRECTORY}/cocos/cocos2d.cpp)
 	# 
 	# 3. 导入模块;
 	# 
@@ -84,7 +84,7 @@ MACRO(dxm_config_find_module MODULE)
 		dxm_find_module(${MODULE} PACKAGE cocos COMPONENTS libjscocos2d libcocos2d HEADERS cocos/cocos2d.h)
 		dxm_find_module(${MODULE} PACKAGE external1 COMPONENTS websockets libzlib libwebp libiconv freetype250)	
 		dxm_find_module(${MODULE} PACKAGE external2 COMPONENTS glew32 glfw3 libchipmunk libcurl_imp libSpine)	# 
-		dxm_find_module(${MODULE} PACKAGE external3 COMPONENTS libpng libjpeg libtiff libbox2d)	
+		dxm_find_module(${MODULE} PACKAGE external3 COMPONENTS libpng libjpeg libtiff libbox2d mozjs-33 sqlite3)	
 		dxm_find_add_libraries(${MODULE} ws2_32 wsock32 winmm opengl32)
 		
 		# dxm_find_module(${MODULE} PACKAGE external HEADERS external/json/document.h)	

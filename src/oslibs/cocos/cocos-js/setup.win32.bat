@@ -14,7 +14,7 @@ if exist ..\..\..\..\..\..\config.bat call ..\..\..\..\..\..\config.bat
 if exist ..\..\..\..\..\..\..\config.bat call ..\..\..\..\..\..\..\config.bat
 
 echo ##### 提示：变量配置 #####
-SET cocos2dx_sln=build/cocos2d-win32.sln
+SET cocos2dx_sln=%DXM_COCOS_PATH%\build\cocos2d-js-win32.sln
 SET DXM_PREBUILT=%cd%\prebuilt
 SET DXM_PLATFORM=win_x86
 	
@@ -24,8 +24,7 @@ rem xcopy /y/s patch\* %DXM_COCOS_PATH%\
 
 echo ##### 提示：编译 Cocos #####
 cd %DXM_COCOS_PATH%
-BuildConsole.exe %cocos2dx_sln% /prj=libluacocos2d /Silent /Cfg="Debug|WIN32,Release|WIN32" 
-BuildConsole.exe %cocos2dx_sln% /prj=libsimulator /Silent /Cfg="Debug|WIN32,Release|WIN32" 
+BuildConsole.exe %cocos2dx_sln% /prj=libjscocos2d /Silent /Cfg="Debug|WIN32,Release|WIN32" 
 
 echo ##### 提示：安装 Cocos #####
 
@@ -38,6 +37,8 @@ xcopy /y/s build\Debug.win32\*.dll %DXM_PREBUILT%\bin\%DXM_PLATFORM%\debug\
 rem cocos
 xcopy /y/s cocos\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s cocos\*.inl %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s cocos\base\*.h %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s cocos\storage\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s cocos\audio\include\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s cocos\network\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s cocos\editor-support\*.h %DXM_PREBUILT%\inc\cocos\
@@ -68,6 +69,7 @@ xcopy /y/s cocos\scripting\js-bindings\auto\*.hpp %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s cocos\scripting\js-bindings\manual\*.hpp %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s cocos\audio\include\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s external\spidermonkey\include\win32\*.h %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s external\spidermonkey\include\win32\*.msg %DXM_PREBUILT%\inc\cocos\
 
 cd /d %~dp0
 

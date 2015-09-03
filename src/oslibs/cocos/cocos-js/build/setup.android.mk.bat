@@ -1,7 +1,7 @@
 @echo off
 
 set ocd=%cd%
-set COCOS2DX_ZIP_NAME=cocos-src
+
 cd /d %~dp0
 cd ..
 
@@ -13,8 +13,8 @@ if exist ..\..\..\..\config.bat call ..\..\..\..\config.bat
 if exist ..\..\..\..\..\config.bat call ..\..\..\..\..\config.bat
 
 echo ##### Ã· æ£∫¥Ú≤π∂° #####
-rem rmdir /s/Q %COCOS2DX_ZIP_NAME%\extensions\spine
-rem xcopy /y/s patch\* %COCOS2DX_ZIP_NAME%\
+rem rmdir /s/Q %DXM_COCOS_PATH%\extensions\spine
+rem xcopy /y/s patch\* %DXM_COCOS_PATH%\
 
 md proj.android\jni
 copy /y Android.mk proj.android\jni

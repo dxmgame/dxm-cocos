@@ -1,6 +1,6 @@
 
 SET(DXM_CONFIG_TEMPLATE prebuit)
-SET(DXM_CONFIG_MODULE cocos) 
+SET(DXM_CONFIG_MODULE cocos-cpp) 
 
 
 # 
@@ -38,7 +38,7 @@ MACRO(dxm_config_module_init MODULE)
 	# 	额外计算默认目录的md5，其中包括src,inc,proto,src.android/cpp,src.ios/cpp,src.win/cpp，src.unix/cpp
 	# dxm_module_add_directory_md5(${MODULE} patch)
 	# 	额外计算工程当前某目录下的MD5为模块MD5
-	dxm_module_add_file_md5(${MODULE} ${DXM_CMAKE_COCOS_DIRECTORY}/cocos-src/cocos/cocos2d.cpp)
+	dxm_module_add_file_md5(${MODULE} ${DXM_CMAKE_COCOS_DIRECTORY}/cocos/cocos2d.cpp)
 	# 
 	# 3. 导入模块;
 	# 

@@ -17,7 +17,7 @@
 # dxm_register_regist_module(lua ${CMAKE_CURRENT_LIST_DIR}/src/oslibs/lua)
 dxm_register_regist_module(cocos-cpp ${CMAKE_CURRENT_LIST_DIR}/src/oslibs/cocos/cocos-cpp)
 dxm_register_regist_module(cocos-lua ${CMAKE_CURRENT_LIST_DIR}/src/oslibs/cocos/cocos-lua)
-dxm_register_regist_module(cocos-js ${CMAKE_CURRENT_LIST_DIR}/src/oslibs/cocoscocos-js)
+dxm_register_regist_module(cocos-js ${CMAKE_CURRENT_LIST_DIR}/src/oslibs/cocos/cocos-js)
 
 # 第三方预编译;
 # dxm_register_regist_module(platform ${CMAKE_CURRENT_LIST_DIR}/src/prebuilt/platform pthread dl socket xml2 z inet vld)

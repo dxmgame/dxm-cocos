@@ -14,7 +14,7 @@ if exist ..\..\..\..\..\..\config.bat call ..\..\..\..\..\..\config.bat
 if exist ..\..\..\..\..\..\..\config.bat call ..\..\..\..\..\..\..\config.bat
 
 echo ##### 提示：变量配置 #####
-SET cocos2dx_sln=build/cocos2d-win32.sln
+SET cocos2dx_sln=%DXM_COCOS_PATH%\build\cocos2d-win32.sln
 SET DXM_PREBUILT=%cd%\prebuilt
 SET DXM_PLATFORM=win_x86
 	
@@ -38,6 +38,8 @@ xcopy /y/s build\Debug.win32\*.dll %DXM_PREBUILT%\bin\%DXM_PLATFORM%\debug\
 rem cocos
 xcopy /y/s cocos\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s cocos\*.inl %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s cocos\base\*.h %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s cocos\storage\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s cocos\audio\include\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s cocos\network\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s cocos\editor-support\*.h %DXM_PREBUILT%\inc\cocos\
