@@ -61,20 +61,13 @@ xcopy /y/s external\win32-specific\gles\include\OGLES\GL\*.h %DXM_PREBUILT%\inc\
 xcopy /y/s external\freetype2\include\win32\freetype2\*.h %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s external\freetype2\include\win32\*.h %DXM_PREBUILT%\inc\cocos\
 
-rem lua
-xcopy /y/s cocos\scripting\lua-bindings\auto\*.h %DXM_PREBUILT%\inc\cocos\
-xcopy /y/s cocos\scripting\lua-bindings\manual\*.h %DXM_PREBUILT%\inc\cocos\
-xcopy /y/s cocos\scripting\lua-bindings\auto\*.hpp %DXM_PREBUILT%\inc\cocos\
-xcopy /y/s cocos\scripting\lua-bindings\manual\*.hpp %DXM_PREBUILT%\inc\cocos\
+rem js
+xcopy /y/s cocos\scripting\js-sbindings\auto\*.h %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s cocos\scripting\js-bindings\manual\*.h %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s cocos\scripting\js-bindings\auto\*.hpp %DXM_PREBUILT%\inc\cocos\
+xcopy /y/s cocos\scripting\js-bindings\manual\*.hpp %DXM_PREBUILT%\inc\cocos\
 xcopy /y/s cocos\audio\include\*.h %DXM_PREBUILT%\inc\cocos\
-xcopy /y/s external\lua\lua\*.h %DXM_PREBUILT%\inc\cocos\
-xcopy /y/s external\lua\tolua\*.h %DXM_PREBUILT%\inc\cocos\
-xcopy /y/s external\lua\luajit\include\*.h %DXM_PREBUILT%\inc\cocos\
-
-rem simulator
-xcopy /y/s tools\simulator\libsimulator\lib\*.h %DXM_PREBUILT%\inc\cocos\
-xcopy /y/s tools\simulator\libsimulator\lib\protobuf-lite\*.h %DXM_PREBUILT%\inc\cocos\
-
+xcopy /y/s external\spidermonkey\include\win32\*.h %DXM_PREBUILT%\inc\cocos\
 
 cd /d %~dp0
 
